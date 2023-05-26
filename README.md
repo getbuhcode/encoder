@@ -1,6 +1,6 @@
 # Encoder
 
-This application takes in plain text and encode it based on a encoding reference table.
+This application takes in plain text and encode it based on an encoding reference table.
 
 OOP Concept in this application:
 1. Inheritance: The Encoder Interface is inherited by the MessageEncoder class through the "implements" keyword.
