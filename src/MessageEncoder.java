@@ -150,45 +150,59 @@ public class MessageEncoder implements Encoder {
     /* getIndex Method */
     // Get the index of the character to be used for encoding
     private int getEncodingIndex(int encodeIndex, int offset) {
+        // Based on formula
+        return (referenceStr.length() - offset + encodeIndex) % referenceStr.length();
 
-        int index = 0;
-        int diff = encodeIndex - offset;
+          /*
+           * Implementation without formula
+           */
 
-        // if the character to be encoded is not offset character
-        if (diff != 0) {
-
-            // if character to be encoded is before offset character,
-            // add length of reference string/table
-            if (diff < 0) {
-                index = diff + referenceStr.length();
-            }
-            else {
-                // if character to be encoded is after offset character,
-                // the index will remain as it is
-                index = diff;
-            }
-        }
-        return index;
+//        int index = 0;
+//
+//        int remainder = (referenceStr.length() - offset + encodeIndex) % referenceStr.length();
+//        int diff = encodeIndex - offset;
+//
+//        // if the character to be encoded is not offset character
+//        if (diff != 0) {
+//
+//            // if character to be encoded is before offset character,
+//            // add length of reference string/table
+//            if (diff < 0) {
+//                index = diff + referenceStr.length();
+//            }
+//            else {
+//                // if character to be encoded is after offset character,
+//                // the index will remain as it is
+//                index = diff;
+//            }
+//        }
+//        return index;
     }
 
     /* getIndex Method */
     // Get the index of the character to be used for decoding
     private int getDecodingIndex (int decodeIndex, int offset) {
+        // Based on formula
+        return (decodeIndex + offset) % referenceStr.length();
 
-        int index = 0;
-        int diff = referenceStr.length() - decodeIndex;
+        /*
+         * Implementation without formula
+         */
 
-        if (diff != 0) {
-            // if character to be decoded is before offset character,
-            // minimise length of reference string/table plus offset
-            if (diff < offset) {
-                index = decodeIndex - referenceStr.length() + offset;
-            }
-            else if (diff > offset) {
-                index = decodeIndex + offset;
-            }
-        }
-
-        return index;
+//        int index = 0;
+//        int diff = referenceStr.length() - decodeIndex;
+//
+//        if (diff != 0) {
+//            // if character to be decoded is before offset character,
+//            // minimise length of reference string/table plus offset
+//            if (diff < offset) {
+//                index = decodeIndex - referenceStr.length() + offset;
+//            }
+//            else if (diff > offset) {
+//                index = decodeIndex + offset;
+//            }
+//        }
+//
+//        return index;
     }
 }
